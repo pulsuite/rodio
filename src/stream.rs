@@ -56,7 +56,6 @@ impl OutputStream {
         sample_format: &SampleFormat,
     ) -> Result<(Self, OutputStreamHandle), StreamError> {
         let (mixer, _stream) = device.try_new_output_stream(&config, &sample_format)?;
-        _stream.play()?;
         let out = Self { mixer, _stream };
         let handle = OutputStreamHandle {
             mixer: Arc::downgrade(&out.mixer),
